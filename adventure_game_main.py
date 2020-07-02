@@ -1,6 +1,5 @@
 import time
 import random
-import sys
 
 
 # Prints a message and gives a time delay.
@@ -116,18 +115,21 @@ def disused_hut(items, enemy_name, weapon):
     print_pause(f"It's the {enemy_name}!")
     print_pause(hut_intro_2)
     print_pause(hut_intro_3)
-    while True:
+    user_not_chosen = True # Variable for the while loop condition.
+    while user_not_chosen:
         # Choice to fight the enemy or retreat to the forest.
         defence_choice = input(f"Do you (1){weapon_used}or (2) run away?\n")
         if defence_choice == "1":
             print_pause(result_1)
             print_pause(result_2)
             print_pause(result_3)
+            user_not_chosen = False # Sets the loop to false, choice was made.
             play_again()
         elif defence_choice == "2":
             print_pause("Playing it safe, you run like crazy "
                         "back to the forest. "
                         "Lucky you weren't followed!")
+            user_not_chosen = False # Sets the loop to false, choice was made.
             forest(items, enemy_name, weapon)
         else:
             print_pause("Come on there's no time for playing!")
@@ -143,7 +145,6 @@ def play_again():
     # Allows the player to exit the game.
     elif choice == "n":
         print_pause("Thanks for playing, goodbye!")
-        sys.exit(0)
     # Handles incorrect input.
     else:
         print_pause("Please enter a valid answer.")
